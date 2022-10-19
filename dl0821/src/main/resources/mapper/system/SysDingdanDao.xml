@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.SysDingdanDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.jeefast.system.entity.SysDingdan">
+		<id column="id" property="id" />
+		<result column="ddtype" property="ddtype" />
+		<result column="ddje" property="ddje" />
+		<result column="kssj" property="kssj" />
+		<result column="parintid" property="parintid" />
+		<result column="updatetime" property="updatetime" />
+		<result column="ydry" property="ydry" />
+		<result column="jssj" property="jssj" />
+	</resultMap>
+	<delete id="deleteBatch">
+		delete from sys_dingdan where id in
+		<foreach item="dingdanIds" collection="array" open="(" separator="," close=")">
+			#{dingdanIds}
+		</foreach>
+	</delete>
+	<select id="queryPageList" resultType="cn.jeefast.system.entity.SysDingdan">
+		select r.* from sys_dingdan r
+		left JOIN sys_food f
+		on r.parintid = f.id
+        <where>
+
+		</where>
+		order by r.updatetime
+	</select>
+
+<!--			left JOIN sys_food f-->
+<!--		on r.parintid = f.id-->
+	<select id="queryPageListByYye" resultType="java.util.Map">
+		select sum(r.ddje) ddzje, count(*) xszs from sys_dingdan r
+		left JOIN sys_food f
+		on r.parintid = f.id
+		<where>
+			<if test="sssj != null and sssj.trim() != ''">
+				and f.`createuser` = #{sssj}
+			</if>
+			<if test="kssj != null and kssj.trim() != ''">
+				and r.`kssj` like concat('%',#{kssj},'%')
+			</if>
+
+		</where>
+	</select>
+
+</mapper>

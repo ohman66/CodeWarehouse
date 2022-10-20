@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" by:nzcms·ningzhi.net
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/ico" href="nz.ico">
+    <link href="js/home/css/css.css" rel="stylesheet" type="text/css"/>
+    <link href="js/home/css/css_2.css" rel="stylesheet" type="text/css"/>
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="plugins/jqgrid/ui.jqgrid-bootstrap.css">-->
+    <!--    <link rel="stylesheet" href="plugins/ztree/css/metroStyle/metroStyle.css">-->
+    <!--    <link rel="stylesheet" href="css/main.css">-->
+    <script src="libs/jquery.min.js"></script>
+    <script src="plugins/layer/layer.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/vue.min.js"></script>
+    <script src="plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="plugins/laydate/laydate.js"></script>
+    <script src="libs/jquery/jquery.PrintArea.min.js"></script>
+    <style>
+        .ssinfo {
+            width: 230px;
+            height: 30px;
+            margin-left: 75px;
+            padding: 0 15px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 50px;
+            border: 1px solid #cfcece;
+            -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #0a0909;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            -o-transition: all .2s;
+            -moz-transition: all .2s;
+            -webkit-transition: all .2s;
+            -ms-transition: all .2s;
+            color: #999999;
+        }
+
+        a:link, a:visited {
+            color: #636262;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #636262;
+            text-decoration: none;
+        }
+    </style>
+    <!--防止网页被框架 -->
+
+
+    <!--ie6PNG图片兼容 -->
+    <script type="text/javascript" src="js/home/js/png.js"></script>
+    <script type="text/javascript" src="js/home/js/jquery.liMarquee.js"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('.png,.index_pic_img,.box');
+    </script>
+
+    <!--ie6PNG图片兼容 -->
+</head>
+
+<body>
+<div id="rrapp">
+    <div id="top_box" style="width: 1200px">
+        <div id="top_left">欢迎来到闲置物品租赁平台</div>
+        <div id="top_right" style="width: 1200px">
+            <!--        <a href="http://www.taianzxwqy.com/wp/useradmin/login">请登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
+            <!--        <a href="http://www.taianzxwqy.com/wp/zxqy/shouye/zc">免费注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
+            <a href="javascript:void(0);" onclick="AddFavorite('闲置物品租赁平台',location.href)">收藏本站</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="javascript:void(0);" onclick="SetHome(this,document.domain);">设为首页</a></div>
+    </div>
+
+
+
+<!--下拉这里开始 -->
+<script type="text/javascript">
+    <!--
+    var timeout = 200;
+    var closetimer = 0;
+    var ddmenuitem = 0;
+
+    // open hidden layer
+    function mopen(id) {
+        // cancel close timer
+        mcancelclosetime();
+
+        // close old layer
+        if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+        // get new layer and show it
+        ddmenuitem = document.getElementById(id);
+        ddmenuitem.style.visibility = 'visible';
+
+    }
+
+    // close showed layer
+    function mclose() {
+        if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+    }
+
+    // go close timer
+    function mclosetime() {
+        closetimer = window.setTimeout(mclose, timeout);
+    }
+
+    // cancel close timer
+    function mcancelclosetime() {
+        if (closetimer) {
+            window.clearTimeout(closetimer);
+            closetimer = null;
+        }
+    }
+
+    // close layer when click-out
+    document.onclick = mclose;
+
+    // -->
+    function SetHome(obj, url) {
+        try {
+            obj.style.behavior = 'url(#default#homepage)';
+            obj.setHomePage(url);
+        } catch (e) {
+            if (window.netscape) {
+                try {
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                } catch (e) {
+                    alert("抱歉，此操作被浏览器拒绝！\n\n请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为'true'");
+                }
+            } else {
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n您需要手动将【" + url + "】设置为首页。");
+            }
+        }
+    }
+
+    //收藏本站
+    function AddFavorite(title, url) {
+        try {
+            window.external.addFavorite(url, title);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            } catch (e) {
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+</script>
+
+
+    <div id="top_dh_01" style="text-align: center; background-color: #082E54 ;width:1200px;">
+        <form  method="post" class="form form-horizontal">
+            <div id="sddm" style=" width:1200px;margin: auto;height: 100%;overflow:hidden;">
+
+                <ul style=" list-style-type:none;  display:inline; text-align: center; ">
+                    <li style="  line-height: 65px; "><a href="" style="font-size:24px;">欢迎光临</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:18px; "
+                                                                        href="cpydjm.html">租赁物品</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:18px; "
+                                                                        href="zxcz.html">在线充值</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:18px; "
+                                                                        href="zxczjl.html">充值记录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:18px;  "
+                                                                        href="gwc.html">我的收藏</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:18px;  "
+                                                                        href="wdddym.html">我的租赁</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:18px;"
+                                                                        href="index.html#modules/sys/food.html">进入后台</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li style="  line-height: 65px; font-size:18px; margin-left: 300px;"><a style="font-size:18px;"
+                                                                                            href="login.html">登录注册</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+
+                </ul>
+            </div>
+        </form>
+
+    </div>
+<!--下拉这里结束 -->
+
+
+<link type="text/css" rel="stylesheet" href="/js/home/css/wangwei.css">
+    <div style="width: 1200px"><img src="img/banner.jpg" style="width: 100%;"/></div>
+<div id="box">
+    <table class="table1200" border="0" align="center" cellpadding="0" cellspacing="8" bgcolor="#FFFFFF">
+        <tr valign="top">
+
+            <td align="center">
+
+
+                <table height="30" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+                                <table width="100%" height="30" border="0" cellpadding="3" cellspacing="0" bgcolor="#F5F5F5"
+                                       class="bg_qc">
+                                    <tr>
+                                        <td width="25" height="20" align="center"><img
+                                                src="img/nzcms.xinxin.gif" alt="标"/></td>
+                                        <td align="left" class="title12">您的位置：
+
+                                            我的收藏展览
+                                        </td>
+                                    </tr>
+                                </table>
+                <table height="10" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <!--图片格式显示 -->
+                <meta http-equiv="Content-Type" content="text/html; "/>
+                <!--服务专家显示 -->
+                <div v-if="sysGwcList.length>0" v-for="(item, index) in sysGwcList">
+                    <a :href="'gwcinfo.html?id='+item.sysFood.id">
+                        <table width="98%" height="113" border="0" align="center" cellpadding="0" cellspacing="0" class="dx"
+                               bgcolor="#ffffff"
+                               style="cursor:pointer;border:none;">
+                            <tr>
+                                <td rowspan="3" style="font-size:26px;color:#d6d6d6;">
+                                    <input type="checkbox" name="vehicle" :value="item.id"  />
+                                </td>
+                                <td width="100" rowspan="3" style="text-align: center;"><img style="width: 200px;height: 200px;"
+                                                                                             :src="item.sysFood.tp"
+                                                                                             alt="物品照片"/></td>
+                                <td width="697" style=""><span style="font-size: 16px;font-weight: bold;">&nbsp;&nbsp;{{item.sysFood.foodname}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="font-size: 14px;font-weight: bold;">&nbsp;&nbsp;收藏数量：</span><span
+                                        style="font-size: 14px;">{{item.sl}}</span>
+
+                                    <span style="font-size: 14px;font-weight: bold;">&nbsp;&nbsp;物品特点：</span><span
+                                        style="font-size: 14px;">所属品牌：（{{item.sysFood.localcolorname}}）;</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size: 14px;font-weight: bold;">&nbsp;&nbsp;物品描述：</span><span
+                                        style="font-size: 14px;">{{item.sysFood.describe}}</span></td>
+                            </tr>
+
+                        </table>
+
+                        <table width="98%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+                            <tr>
+                                <td align="right" class="list_title" style=" border-bottom: 1px solid #d8dadc;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </a>
+                </div>
+                <table width="98%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+                    <tr>
+                        <td align="right" class="list_title" style=" border-bottom: 1px solid #d8dadc;text-align: center">
+                            <a class="btn btn-primary btn-sm" style="width: 100px; text-align: center" @click.stop="ydcwtc">&nbsp;合计租赁</a>
+                            <a class="btn btn-primary btn-sm" style="width: 100px; text-align: center" @click.stop="deletegwc">&nbsp;删除收藏物品</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+﻿
+<div id="end_dh_BOX">
+
+    <div id="end_dh_03" style="background-color: #082E54;width:1200px;color: #efefef;font-family:microsoft yahei;position: fixed;bottom: 0;width: 100%;">
+        <br>
+        再次欢迎光临观看本平台！
+        <br>
+        <style>
+            .c_img {
+                position: relative;
+                margin-left: -200px;
+            }
+
+            .c_words {
+                margin-top: -25px;
+                margin-left: 25px;
+            }
+        </style>
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+<script src="libs/jquery.min.js"></script>
+<script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="libs/vue.min.js"></script>
+<script src="libs/bootstrap.min.js"></script>
+<script src="libs/app.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#rrapp',
+        data:{
+            showLogin:false,
+            username: '',
+            password: '',
+            captcha: '',
+            error: false,
+            errorMsg: '',
+            errorMsgreg:'',
+            src: 'captcha.jpg',
+            sxh:'',
+            sname:'',
+            xzraol:'',
+            susername:'',
+            spassword:'',
+            college:'',
+            major:'',
+            classinfo:'',
+            grade:'',
+            zcspassword:'',
+            foodList:[],
+            sysGwcList:[],
+
+        },
+        beforeCreate: function(){
+            if(self != top){
+                top.location.href = self.location.href;
+            }
+        },
+        mounted: function () {   //自动触发写入的函数
+            this.getGwcListAll();
+        },
+        methods: {
+            deletegwc: function() {//预定租赁
+                var TVGoods = $('input[name="vehicle"]:checked').map(function () {
+                    return this.value;
+                }).get().join(",");
+                if(TVGoods == ""){
+                    alert("请选择收藏物品");
+                    return;
+                }
+                var temp = {"gwcids":JSON.stringify(TVGoods)}
+                confirm('确定要删除选中收藏中物品？', function() {
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + "sysIndexQd/deletegwc",
+                        contentType: "application/json",
+                        data: JSON.stringify(temp),
+                        success: function (r) {
+                            if (r.code == 0) {
+                                alert("删除成功！");
+                                vm.getGwcListAll();
+                            } else {
+                                alert(r.msg);
+                            }
+                        }
+                    });
+                })
+
+            },
+            ydcwtc: function(food) {//购买租赁页面
+                var TVGoods = $('input[name="vehicle"]:checked').map(function () {
+                    return this.value;
+                }).get().join(",");
+                if(TVGoods == ""){
+                    alert("请选择收藏物品");
+                    return;
+                }
+
+                location.href = baseURL + 'xdyw.html?'+TVGoods;
+                // $("#myModalPreachData").modal('show');
+            },
+            ydgwc: function(food){//预定租赁
+
+                var TVGoods = $('input[name="vehicle"]:checked').map(function () {
+                    return this.value;
+                }).get().join(",");
+                if(TVGoods == ""){
+                    alert("请选择收藏物品");
+                    return;
+                }
+                console.log("TVGoodsTVGoodsTVGoods"+JSON.stringify(TVGoods))
+                var token = localStorage.getItem("token");
+                var temp = {"token":token,"itemid":food.id,"gwcids":JSON.stringify(TVGoods)}
+                confirm('确定支付下单？', function() {
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + "sysIndexQd/ydgwc",
+                        contentType: "application/json",
+                        data: JSON.stringify(temp),
+                        success: function (r) {
+                            if (r.code == 0) {
+                                confirm("支付成功--本次支付合计金额："+r.hjje, function() {
+                                    alert("下单成功-可在我的租赁中查看物流进度");
+                                });
+                            } else {
+                                alert(r.msg);
+                            }
+                        }
+                    });
+                })
+            },
+            getGwcListAll: function () {
+                var token = localStorage.getItem("token");
+                console.log("tokentokentokentoken" + token)
+
+                if (token == null) {
+                    // parent.location.href = baseURL + 'login.html';
+                    window.open(baseURL + 'login.html');
+                }else{
+                    tjarray = {"token":token};
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + "sysIndexQd/getGwcListAll",
+                        contentType: "application/json",
+                        data: JSON.stringify(tjarray),
+                        success: function(r){
+                            if(r.code === 0){
+                                vm.sysGwcList = r.sysGwcList;
+                                console.log("sysGwcListsysGwcList"+JSON.stringify(vm.sysGwcList))
+                            }else{
+                                alert(r.msg);
+                            }
+                        }
+                    });
+                }
+            },
+
+        }
+    });
+</script>
+</body>
+</html>

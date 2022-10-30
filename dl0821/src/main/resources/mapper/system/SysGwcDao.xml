@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.SysGwcDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.jeefast.system.entity.SysGwc">
+		<id column="id" property="id" />
+		<result column="foodid" property="foodid" />
+		<result column="createuser" property="createuser" />
+		<result column="cratetime" property="cratetime" />
+		<result column="updateuser" property="updateuser" />
+		<result column="updatetime" property="updatetime" />
+		<result column="sssj" property="sssj" />
+	</resultMap>
+	<delete id="deleteBatch">
+		delete from sys_gwc where id in
+		<foreach item="gwcIds" collection="array" open="(" separator="," close=")">
+			#{gwcIds}
+		</foreach>
+	</delete>
+	<select id="queryPageList" resultType="cn.jeefast.system.entity.SysGwc">
+		select r.*,su.realname,sf.foodname from sys_gwc r
+		left join sys_user su
+		on r.createuser = su.username
+		left join sys_food sf
+		on r.foodid = sf.id
+		<where>
+			<if test="foodname != null and foodname.trim() != ''">
+				and r.`foodname` like concat('%',#{foodname},'%')
+			</if>
+		</where>
+		order by r.updatetime
+	</select>
+
+</mapper>

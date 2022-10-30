@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.SysFoodDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.jeefast.system.entity.SysFood">
+		<id column="id" property="id" />
+		<result column="foodname" property="foodname" />
+		<result column="coolid" property="coolid" />
+		<result column="picturelocation" property="picturelocation" />
+		<result column="localcolor" property="localcolor" />
+		<result column="foodtype" property="foodtype" />
+		<result column="taste" property="taste" />
+		<result column="describe" property="describe" />
+		<result column="newfood" property="newfood" />
+		<result column="updatetime" property="updatetime" />
+	</resultMap>
+	<delete id="deleteBatch">
+		delete from sys_food where id in
+		<foreach item="foodIds" collection="array" open="(" separator="," close=")">
+			#{foodIds}
+		</foreach>
+	</delete>
+	<select id="queryPageList" resultType="cn.jeefast.system.entity.SysFood">
+		select r.* from sys_food r
+		<where>
+			<if test="foodName != null and foodName.trim() != ''">
+				and u.`foodname` like concat('%',#{foodName},'%')
+			</if>
+		</where>
+		order by r.updatetime
+	</select>
+    <select id="selectListByMap" resultType="cn.jeefast.system.entity.SysFood">
+		select r.*,(select sum(sd.sl) from sys_dingdan sd where sd.parintid = r.id) ddsl from sys_food r
+		<where>
+			<if test="foodname != null and foodname.trim() != ''">
+				and r.`foodname` like concat('%',#{foodname},'%')
+			</if>
+			<if test="foodtype != null and foodtype.trim() != ''">
+				and r.`foodtype` = #{foodtype}
+			</if>
+			<if test="localcolor != null and localcolor.trim() != ''">
+				and r.`localcolor` = #{localcolor}
+			</if>
+			<if test="issj != null and issj.trim() != ''">
+				and r.`issj` = #{issj}
+			</if>
+
+		</where>
+		<if test="isrxsp != null and isrxsp.trim() != ''">
+			order by ddsl desc
+
+		</if>
+
+		<if test="isrxsp == null or isrxsp.trim() == ''">
+			order by r.updatetime desc
+
+		</if>
+	</select>
+
+</mapper>
